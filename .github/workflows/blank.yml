@@ -12,11 +12,16 @@ on:
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+    # Variables de entorno
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
+    env:
+      platform: aws
+      region: us-east-1
+      account: 1223213
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
@@ -36,3 +41,18 @@ jobs:
           echo test, and deploy your project.
       - name : "Mostrar Mensaje"
         run : echo "Hola Perros"
+
+      - name: "Mostrando variables de Entorno"
+        if: ${{ env.platform=='azure'}}
+        run : |
+          echo "Esto es  el valor de la platform: ${{ env.platform }} "
+          echo "Esto es el valor de region: ${{env.region}}"
+          echo 'Esto e el valor de la account : ${{env.account}}'
+
+      - name: "Mostrando el  otro mensaje"
+        if: ${{ env.platform=='aws'}}
+        run : |
+          echo "Esto es  el valor de la platform aws: ${{ env.platform }} "
+          echo "Esto es el valor de region aws: ${{env.region}}"
+          echo 'Esto e el valor de la account aws : ${{env.account}}'
+
