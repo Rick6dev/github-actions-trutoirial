@@ -56,3 +56,6 @@ jobs:
           echo "Esto es el valor de region aws: ${{env.region}}"
           echo 'Esto e el valor de la account aws : ${{env.account}}'
 
+      - name : "Mostrando  eventos  interno de  git"
+        run : |
+          echo "Evento : ${{toJson(github.event)}}"
